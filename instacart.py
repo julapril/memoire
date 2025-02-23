@@ -12,7 +12,7 @@ from faire_graphique_copule_en_vigne import vinecop_plot
 from formatter_structure import formatter_structure
 from obtenir_borne_padmanabhan_natarajan import obtenir_borne_padmanabhan_natarajan
 from obtenir_probabilite_independance_conditionnelle import obtenir_probabilite_independance_conditionnelle
-from obtenir_borne_probabilite_independance import obtenir_borne_probabilite_independance
+from obtenir_borne_univarie import obtenir_borne_univariee
 
 os.environ["PATH"] += os.pathsep + 'C:/Program Files (x86)/Graphviz12.2.1/bin/'
 
@@ -117,15 +117,9 @@ def instacart(regle_k, granularite = "département", n_transactions=None):
     # Seulement la granularité département permet une visualisation agréable
     if granularite == "département":
         vinecop_plot(copule_vigne, add_edge_labels=False, vars_names=noms)
-        filename = "copule_vigne_arbre.png"
+        filename = "graphiques/copule_vigne_arbre.png"
         plt.savefig(filename, dpi=1200)
         plt.show()
-
-        # pp_original = {(i+1, j+1): np.mean(data[:, i] * data[:, j]) for i, j in structure['aretes_originales']}
-        # vinecop_plot(copule_vigne, vars_names=list(map(str, p)), edge_names=list(map(str, pp_original)))
-        # filename = "copule_vigne_probabilites.png"
-        # plt.savefig(filename, dpi=1200)
-        # plt.show()
 
     # endregion
 
@@ -144,12 +138,12 @@ def instacart(regle_k, granularite = "département", n_transactions=None):
                                                                     probabilites_bivariees=pp,
                                                                     nombre_de_defauts=k)
 
-    borne_inf_ind = obtenir_borne_probabilite_independance(probabilites_univariees=p,
-                                                           nombre_de_defauts=k,
-                                                           minimiser=True)
-    borne_sup_ind = obtenir_borne_probabilite_independance(probabilites_univariees=p,
-                                                           nombre_de_defauts=k,
-                                                           minimiser=False)
+    borne_inf_ind = obtenir_borne_univariee(probabilites_univariees=p,
+                                            nombre_de_defauts=k,
+                                            minimiser=True)
+    borne_sup_ind = obtenir_borne_univariee(probabilites_univariees=p,
+                                            nombre_de_defauts=k,
+                                            minimiser=False)
 
     borne_inf = obtenir_borne_padmanabhan_natarajan(sommets=sommets, aretes=aretes,
                                                     probabilites_univariees=p, probabilites_bivariees=pp,
@@ -171,5 +165,5 @@ def instacart(regle_k, granularite = "département", n_transactions=None):
     display(resultats)
 
     # Exportation vers Excel
-    resultats.to_excel(f"resultats_instacart_{granularite}.xlsx", index=False, header=True)
+    resultats.to_excel(f"tableaux/resultats_instacart_{granularite}.xlsx", index=False, header=True)
     # endregion

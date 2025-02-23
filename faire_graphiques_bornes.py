@@ -73,7 +73,7 @@ def faire_graphiques_bornes(n_debut, n_fin, n_saut, regle_k, regle_k_nom, p_uni,
         plt.legend()
         plt.grid(True)
 
-        filename = f"bornes_{regle_k_nom}_{p_nom}_{titres[i].replace(' ', '_').lower()}.png"
+        filename = f"graphiques/bornes_{regle_k_nom}_{p_nom}_{titres[i].replace(' ', '_').lower()}.png"
         plt.savefig(filename, dpi=1200)
         plt.show()
         plt.close()

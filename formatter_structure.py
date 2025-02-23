@@ -1,4 +1,5 @@
 import json
+import os
 
 
 def formatter_structure(copule_vigne):
@@ -7,6 +8,8 @@ def formatter_structure(copule_vigne):
     with open("copule_vigne.json", "r") as f:
         loaded_json = json.load(f)
         structure = loaded_json.get("structure")
+
+    os.remove("copule_vigne.json")
 
     d = structure['array']['d']
     sommets = list(range(d))

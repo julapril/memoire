@@ -51,7 +51,7 @@ def analyse_temps_execution(n_debut_comp, n_fin_comp, n_valeurs_p_n, regle_k, nb
     titre = "Temps d'exécution de l'algorithme naïf pour différentes structures et tailles d'arbres"
     display(Markdown(f"## {titre}"))
     display(df_naif)
-    df_naif.to_excel('temps_d_execution_naif.xlsx', header=True)
+    df_naif.to_excel('tableaux/temps_d_execution_naif.xlsx', header=True)
     # endregion
 
     # region Temps d'exécution Padmanabhan Natarajan pour comparaison
@@ -95,7 +95,7 @@ def analyse_temps_execution(n_debut_comp, n_fin_comp, n_valeurs_p_n, regle_k, nb
     titre = "Temps d'exécution de l'algorithme Padmanabhan-Natarajan pour différentes structures et tailles d'arbres"
     display(Markdown(f"## {titre}"))
     display(df_p_n)
-    df_p_n.to_excel('temps_d_exécution_Padmanabhan-Natarajan_comparaison.xlsx', header=True)
+    df_p_n.to_excel('tableaux/temps_d_exécution_Padmanabhan-Natarajan_comparaison.xlsx', header=True)
     # endregion
 
     # region Temps d'exécution Padmanabhan Natarajan pour ordre
@@ -139,7 +139,7 @@ def analyse_temps_execution(n_debut_comp, n_fin_comp, n_valeurs_p_n, regle_k, nb
     titre = "Temps d'exécution de l'algorithme Padmanabhan-Natarajan pour différentes structures et tailles d'arbres"
     display(Markdown(f"## {titre}"))
     display(df_p_n)
-    df_p_n.to_excel('temps_d_exécution_Padmanabhan-Natarajan.xlsx', header=True)
+    df_p_n.to_excel('tableaux/temps_d_exécution_Padmanabhan-Natarajan.xlsx', header=True)
     # endregion
 
     # region Temps d'exécution Graphiques
@@ -160,7 +160,7 @@ def analyse_temps_execution(n_debut_comp, n_fin_comp, n_valeurs_p_n, regle_k, nb
         plt.legend()
         plt.grid(which="both")
 
-        filename = f"temps_comparaison_{titres[i].replace(' ', '_').lower()}.png"
+        filename = f"graphiques/temps_comparaison_{titres[i].replace(' ', '_').lower()}.png"
         plt.savefig(filename, dpi=1200)
         plt.show()
         plt.close()
@@ -185,7 +185,7 @@ def analyse_temps_execution(n_debut_comp, n_fin_comp, n_valeurs_p_n, regle_k, nb
         plt.ylim(ylim_inf, ylim_sup)
         plt.grid(which="both")
 
-        filename = f"temps_PN_loglog_{titres[i].replace(' ', '_').lower()}.png"
+        filename = f"graphiques/temps_PN_loglog_{titres[i].replace(' ', '_').lower()}.png"
         plt.savefig(filename, dpi=1200)
         plt.show()
         plt.close()
