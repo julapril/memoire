@@ -4,13 +4,18 @@ from CardinalitéSousArbres import CardinalitéSousArbres
 
 
 def obtenir_probabilite_independance_conditionnelle(sommets, aretes,
-                                                    probabilites_univariees, probabilites_bivariees,
+                                                    probabilites_univariees,
+                                                    probabilites_bivariees,
                                                     nombre_de_defauts):
     # sommets doit être une liste d'entiers consécutifs de 0 à n-1
-    # aretes doit être une liste de tuples de sommets donnant un arbre, avec parent < enfant
-    # probabilites_univariees doit être une liste de flottants entre 0 et 1, de même longueur que sommets
-    # probabilites_bivariees doit être une liste de flottants entre 0 et 1, de même longueur que aretes
-    # nombre_de_defauts doit être un entier plus petit ou égal au nombre de sommets
+    # aretes doit être une liste de tuples de sommets donnant un arbre,
+    #   avec parent < enfant
+    # probabilites_univariees doit être une liste de flottants
+    #   entre 0 et 1, de même longueur que sommets
+    # probabilites_bivariees doit être une liste de flottants
+    #   entre 0 et 1, de même longueur que aretes
+    # nombre_de_defauts doit être un entier plus petit
+    #   ou égal au nombre de sommets
     n = len(sommets)
     enfants = [[a[1] for a in aretes if a[0] == s] for s in sommets]
     d = [len(enfants) for enfants in enfants]  # Degrés sortants
@@ -42,14 +47,22 @@ def obtenir_probabilite_independance_conditionnelle(sommets, aretes,
             a_i_i1 = aretes.index((i, i_1))
             for t in range(0, N_i_1 - 1 + 1):
                 if t <= N_i_1 - 2:
-                    w[i, 1, 0, t] += w[i_1, d_i_1, 0, t] * pp_00[a_i_i1] / p_0[i_1]
+                    w[i, 1, 0, t] += (w[i_1, d_i_1, 0, t]
+                                      * pp_00[a_i_i1]
+                                      / p_0[i_1])
                 if t >= 1:
-                    w[i, 1, 0, t] += w[i_1, d_i_1, 1, t] * pp_01[a_i_i1] / p_1[i_1]
+                    w[i, 1, 0, t] += (w[i_1, d_i_1, 1, t]
+                                      * pp_01[a_i_i1]
+                                      / p_1[i_1])
             for t in range(1, N_i_1 + 1):
                 if t <= N_i_1 - 1:
-                    w[i, 1, 1, t] += w[i_1, d_i_1, 0, t - 1] * pp_10[a_i_i1] / p_0[i_1]
+                    w[i, 1, 1, t] += (w[i_1, d_i_1, 0, t - 1]
+                                      * pp_10[a_i_i1]
+                                      / p_0[i_1])
                 if t >= 2:
-                    w[i, 1, 1, t] += w[i_1, d_i_1, 1, t - 1] * pp_11[a_i_i1] / p_1[i_1]
+                    w[i, 1, 1, t] += (w[i_1, d_i_1, 1, t - 1]
+                                      * pp_11[a_i_i1]
+                                      / p_1[i_1])
 
         if d[i] >= 2:
             for s in range(2, d[i] + 1):
@@ -101,5 +114,7 @@ def obtenir_probabilite_independance_conditionnelle(sommets, aretes,
                                               / p_1[i_s])
 
     racine = sommets[0]
-    prob = sum(w[racine, d[racine], 0, t] + w[racine, d[racine], 1, t] for t in range(nombre_de_defauts, n + 1))
+    prob = sum(w[racine, d[racine], 0, t]
+               + w[racine, d[racine], 1, t]
+               for t in range(nombre_de_defauts, n + 1))
     return prob

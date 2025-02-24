@@ -12,7 +12,7 @@ from faire_graphique_copule_en_vigne import vinecop_plot
 from formatter_structure import formatter_structure
 from obtenir_borne_padmanabhan_natarajan import obtenir_borne_padmanabhan_natarajan
 from obtenir_probabilite_independance_conditionnelle import obtenir_probabilite_independance_conditionnelle
-from obtenir_borne_univarie import obtenir_borne_univariee
+from obtenir_borne_univariee import obtenir_borne_univariee
 
 os.environ["PATH"] += os.pathsep + 'C:/Program Files (x86)/Graphviz12.2.1/bin/'
 
