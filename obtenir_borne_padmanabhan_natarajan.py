@@ -47,8 +47,10 @@ def obtenir_borne_padmanabhan_natarajan(sommets, aretes,
 
     # Préparation des informations sur l'arbre
     enfants = [[a[1] for a in aretes if a[0] == s] for s in sommets]
-    d = [len(enfants) for enfants in enfants]  # Degrés sortants
-    N = cardinalite_sous_arbres(enfants)  # Cardinalité des premiers sous-arbres
+    # Degrés sortants
+    d = [len(enfants) for enfants in enfants]
+    # Cardinalité des premiers sous-arbres
+    N = cardinalite_sous_arbres(enfants)
 
     # Initialisation des variables de décision
     lambdaa = LpVariable("lambda")

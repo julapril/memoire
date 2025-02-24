@@ -17,11 +17,12 @@ def obtenir_borne_naif(sommets, aretes,
     #   la borne supérieure et True pour la borne inférieure
 
     n = len(sommets)
-    # Matrice dont les lignes représentent les supports de Bernoulli multivariés
+    # Matrice dont les lignes représentent les supports de
+    #   Bernoulli multivariés
     G = np.array([[(i // 2 ** j) % 2 for j in reversed(range(n))]
                   for i in range(2 ** n)], dtype=bool)
-    # Matrice donnant les couples de variables aléatoires liés par une arete
-    #   et simultanément égaux à 1
+    # Matrice donnant les couples de variables aléatoires liés
+    #   par une arete et simultanément égaux à 1
     GG = np.array([[G[i][e[0]] & G[i][e[1]] for e in aretes]
                    for i in range(2 ** n)], dtype=bool)
     # Vecteur de "1"

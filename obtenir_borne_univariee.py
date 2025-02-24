@@ -15,10 +15,10 @@ def obtenir_borne_univariee(probabilites_univariees,
                 n - nombre_de_defauts + 1)
         return \
             (1 -
-                obtenir_borne_univariee(
-                    probabilites_univariees=minimiser_probabilites_univariees,
-                    nombre_de_defauts=minimiser_nombre_de_defauts,
-                    minimiser=False)
+             obtenir_borne_univariee(
+                 probabilites_univariees=minimiser_probabilites_univariees,
+                 nombre_de_defauts=minimiser_nombre_de_defauts,
+                 minimiser=False)
              )
 
     p = sorted(probabilites_univariees)

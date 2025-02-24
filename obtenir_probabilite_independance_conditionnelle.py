@@ -3,10 +3,11 @@ import numpy as np
 from cardinalite_sous_arbres import cardinalite_sous_arbres
 
 
-def obtenir_probabilite_independance_conditionnelle(sommets, aretes,
-                                                    probabilites_univariees,
-                                                    probabilites_bivariees,
-                                                    nombre_de_defauts):
+def obtenir_probabilite_independance_conditionnelle(
+        sommets, aretes,
+        probabilites_univariees,
+        probabilites_bivariees,
+        nombre_de_defauts):
     # sommets doit être une liste d'entiers consécutifs de 0 à n-1
     # aretes doit être une liste de tuples de sommets donnant un arbre,
     #   avec parent < enfant
@@ -18,8 +19,10 @@ def obtenir_probabilite_independance_conditionnelle(sommets, aretes,
     #   ou égal au nombre de sommets
     n = len(sommets)
     enfants = [[a[1] for a in aretes if a[0] == s] for s in sommets]
-    d = [len(enfants) for enfants in enfants]  # Degrés sortants
-    N = cardinalite_sous_arbres(enfants)  # Cardinalité des premiers sous-arbres
+    # Degrés sortants
+    d = [len(enfants) for enfants in enfants]
+    # Cardinalité des premiers sous-arbres
+    N = cardinalite_sous_arbres(enfants)
 
     p_1 = probabilites_univariees
     p_0 = [1 - p_1[sommet] for sommet in sommets]
